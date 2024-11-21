@@ -27,6 +27,8 @@ jobs:
               - 'src/languages/docker.rs'
               - 'tests/files/Dockerfile'
               - 'tests/languages/docker.rs'
+      - name: Print changes
+        run: echo ${{ steps.filter.outputs.changes }}
 
   tasks:
     needs: plan
