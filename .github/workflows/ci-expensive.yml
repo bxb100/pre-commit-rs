@@ -33,7 +33,7 @@ jobs:
 
   tasks:
     needs: plan
-    if: ${{ needs.plan.outputs.changes }}
+    if: ${{ needs.plan.outputs.changes != '[]' && needs.plan.outputs.changes != '' }}
     strategy:
       matrix:
         lang: ${{ fromJSON(needs.plan.outputs.changes) }}
