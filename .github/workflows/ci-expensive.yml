@@ -1,7 +1,6 @@
 name: CI Expensive
 on:
   push:
-    branches: [master]
     paths-ignore:
       - "README.md"
   pull_request:
