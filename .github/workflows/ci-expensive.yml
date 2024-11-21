@@ -51,7 +51,7 @@ jobs:
       - name: Check exist
         id: check
         run: |
-          echo "exist=${{ hashFiles(format('./.github/actions/{0}/{1}', matrix.platform.id, matrix.lang)) }}" >> $GITHUB_OUTPUT
+          echo "exist=${{ hashFiles(format('./.github/actions/{0}/{1}/*', matrix.platform.id, matrix.lang)) != '' }}" >> $GITHUB_OUTPUT
       - name: Run language test
         if: ${{ steps.check.outputs.exist }}
         uses: ./.github/actions/dynamic
