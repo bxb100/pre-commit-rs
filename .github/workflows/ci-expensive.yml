@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "exist=${{ hashFiles(format('./.github/actions/{0}/{1}/*', matrix.platform.id, matrix.lang)) != '' }}" >> $GITHUB_OUTPUT
       - name: Run language test
-        if: ${{ fromJSON(steps.check.outputs.exist) }}
+        if: ${{ steps.check.outputs.exist == 'true' }}
         uses: ./.github/actions/dynamic
         with:
           lang: ${{ matrix.lang }}
