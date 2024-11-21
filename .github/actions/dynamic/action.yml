@@ -20,6 +20,8 @@ description: 'Test Language'
 inputs:
   lang:
     description: "The language to test"
+  id:
+    description: "The test platform identifier"
 
 runs:
   using: "composite"
@@ -33,7 +35,7 @@ runs:
           using: composite
           steps:
           - name: Setup Test Core
-            uses: ./.github/actions/${{ inputs.lang }}
+            uses: ./.github/actions/${{ inputs.id }}/${{ inputs.lang }}
         EOF
     - name: Run
       uses: ./dynamic_test_core

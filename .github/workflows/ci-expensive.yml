@@ -37,13 +37,25 @@ jobs:
     strategy:
       matrix:
         lang: ${{ fromJSON(needs.plan.outputs.changes) }}
-    runs-on: ubuntu-latest
+        platform:
+          - id: ubuntu
+            os: ubuntu-latest
+          - id: windows
+            os: windows-latest
+          - id: macos
+            os: macos-latest
+
+    runs-on: ${{ matrix.platform.os }}
     steps:
+      - name: Check exist
+        id: check
+        run:
+          echo "exist=${{ hashFiles(format('./.github/actions/{0}/{1}', matrix.platform.id, matrix.lang)) }}" >> $GITHUB_OUTPUT
       - uses: actions/checkout@v4
+        if: ${{ steps.check.outputs.exist }}
       - name: Run language test
-        uses: ./.github/actions/${{ matrix.lang }}
+        if: ${{ steps.check.outputs.exist }}
+        uses: ./.github/actions/dynamic
         with:
           lang: ${{ matrix.lang }}
-
-
-
+          id: ${{ matrix.platform.id }}
