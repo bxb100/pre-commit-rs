@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run language test
-        uses: ./.github/actions/dynamic
+        uses: ./.github/actions/${{ matrix.lang }}
         with:
           lang: ${{ matrix.lang }}
 
