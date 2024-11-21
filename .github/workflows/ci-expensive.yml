@@ -49,8 +49,10 @@ jobs:
     steps:
       - name: Check exist
         id: check
-        run:
-          echo "exist=${{ hashFiles(format('./.github/actions/{0}/{1}', matrix.platform.id, matrix.lang)) }}" >> $GITHUB_OUTPUT
+        run: >
+          if [ -f ./.github/actions/${{ matrix.platform.id }}/${{ matrix.lang }} ]; then
+            echo "exist=true" >> $GITHUB_OUTPUT;
+          fi
       - uses: actions/checkout@v4
         if: ${{ steps.check.outputs.exist }}
       - name: Run language test
