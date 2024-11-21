@@ -44,7 +44,6 @@ jobs:
             os: windows-latest
           - id: macos
             os: macos-latest
-    name: ${{ (matrix.lang && format('test {0} on {1}', matrix.lang, matrix.platform.id)) || 'Skiped Task' }}
     runs-on: ${{ matrix.platform.os }}
     steps:
       - uses: actions/checkout@v4
