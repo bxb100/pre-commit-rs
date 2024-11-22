@@ -17,7 +17,6 @@ name = "pre-commit"
 default = []
 profiler = ["dep:pprof", "profiler-flamegraph"]
 profiler-flamegraph = ["pprof/flamegraph"]
-docker-ci = []
 
 [dependencies]
 anstream = "0.6.15"
