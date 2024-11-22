@@ -1,12 +1,15 @@
 name: CI Expensive
 on:
   push:
-    paths-ignore: &ignore
+    paths-ignore:
       - "licenses/**"
       - "scripts/**"
       - "**.md"
   pull_request:
-    paths-ignore: *ignore
+    paths-ignore:
+      - "licenses/**"
+      - "scripts/**"
+      - "**.md"
   workflow_dispatch:
 
 concurrency:
